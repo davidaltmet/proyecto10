@@ -1,3 +1,9 @@
+setTimeout(function () {
+  const loadingOverlay = document.getElementById("loading-overlay");
+
+  loadingOverlay.style.display = "none";
+}, 1500);
+
 let feature1 = document.querySelector(".feature1");
 let feature2 = document.querySelector(".feature2");
 let feature3 = document.querySelector(".feature3");
@@ -89,8 +95,8 @@ let abrirRespuesta = document.querySelectorAll(".question");
 
 for (let s = 0; s < abrirRespuesta.length; s++) {
   abrirRespuesta[s].addEventListener("click", function () {
-    let respuesta = this.nextElementSibling;
-    let flecha = this.querySelector(".flecha_abajo");
+    let respuesta = abrirRespuesta[s].nextElementSibling;
+    let flecha = abrirRespuesta[s].querySelector(".flecha_abajo");
 
     respuesta.classList.toggle("efecto_pregunta");
     flecha.classList.toggle("efecto_flecha");
@@ -143,7 +149,6 @@ function mostrarMensajeExitoso() {
   mensajeErrorVacio.style.display = "none";
   iconoError.style.display = "none";
   mensajeError.style.display = "none";
-  mensageExitoso.classList.add("efecto_mensaje_exitoso");
   contenedorInput.style.background = "";
   inputText.value = "";
 }
@@ -158,14 +163,14 @@ enviarFormulario.addEventListener("click", function (event) {
     mostrarMensajeErrorInvalido();
   } else {
     mostrarMensajeExitoso();
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "E-mail Sent Successfully",
+      showConfirmButton: true,
+    });
   }
 });
-
-setTimeout(function () {
-  const loadingOverlay = document.getElementById("loading-overlay");
-
-  loadingOverlay.style.display = "none";
-}, 1500);
 
 let abrirMenuMovil = document.querySelector(".barra_movil");
 let logo = document.querySelector(".logo");
